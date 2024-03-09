@@ -1,16 +1,15 @@
-package com.example.kisileruygulamasi.ui.Adapter
+package com.example.kisileruygulamasi.ui.adapter
 
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kisileruygulamasi.R
 import com.example.kisileruygulamasi.data.entitiy.Kisiler
 import com.example.kisileruygulamasi.databinding.CardTasarimBinding
-import com.example.kisileruygulamasi.databinding.FragmentAnaSayfaBinding
 import com.example.kisileruygulamasi.ui.fragment.AnaSayfaFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,7 +20,7 @@ class KisilerAdapter(var mContext:Context,var kisilerListesi:List<Kisiler>)
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardTasarimTutucu {
-        val binding = CardTasarimBinding.inflate(LayoutInflater.from(mContext), parent, false)
+        val binding:CardTasarimBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),R.layout.card_tasarim,parent ,false)
         return CardTasarimTutucu(binding)
 
     }
@@ -30,8 +29,7 @@ class KisilerAdapter(var mContext:Context,var kisilerListesi:List<Kisiler>)
         val kisi = kisilerListesi.get(position)
         val t = holder.tasarim
 
-        t.textViewKisiAd.text=kisi.kisi_ad
-        t.textViewKisiTel.text=kisi.kisi_tel
+        t.kisiNesnesi=kisi
 
         // card a tıklayınca detay sayfasnıa gider
         t.CardViewSatir.setOnClickListener {

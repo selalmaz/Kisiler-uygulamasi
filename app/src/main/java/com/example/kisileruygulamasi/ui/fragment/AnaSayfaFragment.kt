@@ -9,11 +9,10 @@ import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kisileruygulamasi.R
 import com.example.kisileruygulamasi.data.entitiy.Kisiler
 import com.example.kisileruygulamasi.databinding.FragmentAnaSayfaBinding
-import com.example.kisileruygulamasi.ui.Adapter.KisilerAdapter
+import com.example.kisileruygulamasi.ui.adapter.KisilerAdapter
 
 class AnaSayfaFragment : Fragment() {
 
@@ -21,7 +20,6 @@ class AnaSayfaFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_ana_sayfa, container, false)
-
         binding.anaSayfaFragment = this
         binding.anaSayfaToolbarBaslik="Kişiler"
 
@@ -56,9 +54,6 @@ class AnaSayfaFragment : Fragment() {
             }
 
         })
-
-
-
 
 
         return binding.root
