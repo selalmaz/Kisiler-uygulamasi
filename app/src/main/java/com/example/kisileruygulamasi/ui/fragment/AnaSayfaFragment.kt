@@ -8,35 +8,31 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.kisileruygulamasi.R
 import com.example.kisileruygulamasi.data.entitiy.Kisiler
 import com.example.kisileruygulamasi.databinding.FragmentAnaSayfaBinding
 import com.example.kisileruygulamasi.ui.adapter.KisilerAdapter
+import com.example.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
+import com.example.kisileruygulamasi.ui.viewmodel.KisiDetayViewModel
 
 class AnaSayfaFragment : Fragment() {
 
     private lateinit var binding: FragmentAnaSayfaBinding
+    private lateinit var viewModel: AnasayfaViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_ana_sayfa, container, false)
         binding.anaSayfaFragment = this
         binding.anaSayfaToolbarBaslik="Kişiler"
 
+        viewModel.kisilerListesi.observe(viewLifecycleOwner){
+            val kisilerAdapter = KisilerAdapter(requireContext(),it,viewModel)
+            binding.kisilerAdapter= kisilerAdapter
 
 
-        val kisilerListesi = ArrayList<Kisiler>()
-        val k1 = Kisiler(1,"ahmet","1111")
-        val k2 = Kisiler(2,"sdsf","2222")
-        val k3 = Kisiler(3,"asdasd","2143")
-        kisilerListesi.add(k1)
-        kisilerListesi.add(k2)
-        kisilerListesi.add(k3)
-
-
-        val kisilerAdapter = KisilerAdapter(requireContext(),kisilerListesi)
-        binding.kisilerAdapter= kisilerAdapter
-
+        }
 
 
 
@@ -54,10 +50,17 @@ class AnaSayfaFragment : Fragment() {
             }
 
         })
-
-
         return binding.root
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : AnasayfaViewModel by viewModels()
+        viewModel = tempViewModel
+        // direk init edemedigimiz icin tempviewmodeli olusturup yaptık
+
+    }
+
 
     fun fabTikla(it:View){
         Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
