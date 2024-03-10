@@ -21,6 +21,7 @@ class AnasayfaViewModel :ViewModel(){
      fun sil(kisi_id : Int){
          CoroutineScope(Dispatchers.Main).launch {
              krepo.sil(kisi_id)
+             kisileriYukle()
          }
     }
 
@@ -30,7 +31,11 @@ class AnasayfaViewModel :ViewModel(){
          }
      }
 
-
-
+     fun ara(aramaKelime :String){
+         CoroutineScope(Dispatchers.Main).launch {
+             kisilerListesi.value = krepo.ara(aramaKelime)
+             // aranan kelimeyi kisileri yukle live datasına atadık
+         }
+     }
 
 }

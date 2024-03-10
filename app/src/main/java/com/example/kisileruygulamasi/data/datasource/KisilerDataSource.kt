@@ -11,14 +11,23 @@ class KisilerDataSource {
         withContext(Dispatchers.IO){
             val kisilerListesi = ArrayList<Kisiler>()
             val k1 = Kisiler(1,"ahmet","1111")
-            val k2 = Kisiler(2,"sdsf","2222")
-            val k3 = Kisiler(3,"asdasd","2143")
+            val k2 = Kisiler(2,"ali","2222")
+            val k3 = Kisiler(3,"veli","2143")
             kisilerListesi.add(k1)
             kisilerListesi.add(k2)
             kisilerListesi.add(k3)
             return@withContext kisilerListesi
             // burda olusturdugumuz verileri anasayfadan erişicez
         }
+
+    suspend fun ara(aramaKelime :String): List<Kisiler> =
+        withContext(Dispatchers.IO){
+            val kisilerListesi = ArrayList<Kisiler>()
+            val k1 = Kisiler(1,"ahmet","1111")
+            kisilerListesi.add(k1)
+            return@withContext kisilerListesi
+
+    }
 
     suspend fun kaydet(kisi_ad : String,kisi_tel : String){
         Log.e("Kişi Kaydet","$kisi_ad- $kisi_tel")

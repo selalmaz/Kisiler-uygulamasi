@@ -39,13 +39,13 @@ class AnaSayfaFragment : Fragment() {
         binding.searchView.setOnQueryTextListener(object :OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
                 // fu fonk harf girdikce harf yazdıkca bize sonuc getiren fonk
-                ara(newText)
+                viewModel.ara(newText)
                 return true
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
                // arama ikonuna bastıgımzada bize sonuc getiren fonk
-                ara(query)
+                viewModel.ara(query)
                 return true
             }
 
@@ -61,14 +61,16 @@ class AnaSayfaFragment : Fragment() {
 
     }
 
-
     fun fabTikla(it:View){
         Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
     }
 
-
-    fun ara(aramaKelime :String){
-        Log.e("Kişi Ara",aramaKelime)
+    override fun onResume() {
+        // sayfanın gorundugunuz algıladımız metotumuz
+        // bir yeni kayıt yapıp tekrar anasayfaya döngümüzde son ekledigimiz de gozuksun diye yaptıuk
+        super.onResume()
+        viewModel.kisileriYukle()
     }
+
 
 }

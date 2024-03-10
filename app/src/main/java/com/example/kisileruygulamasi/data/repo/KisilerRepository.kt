@@ -20,6 +20,9 @@ class KisilerRepository {
     suspend fun kisileriYukle(): List<Kisiler>
     =kds.kisileriYukle()
 
+    suspend fun ara(aramaKelime :String): List<Kisiler>
+    =kds.ara(aramaKelime)
+
 
 
 
