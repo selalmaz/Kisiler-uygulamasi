@@ -16,6 +16,7 @@ import com.example.kisileruygulamasi.databinding.FragmentAnaSayfaBinding
 import com.example.kisileruygulamasi.ui.adapter.KisilerAdapter
 import com.example.kisileruygulamasi.ui.viewmodel.AnasayfaViewModel
 import com.example.kisileruygulamasi.ui.viewmodel.KisiDetayViewModel
+import com.example.kisileruygulamasi.util.gecisYap
 
 class AnaSayfaFragment : Fragment() {
 
@@ -62,7 +63,10 @@ class AnaSayfaFragment : Fragment() {
     }
 
     fun fabTikla(it:View){
-        Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
+        // extension kullaranak gecis yaptık
+        Navigation.gecisYap(it,R.id.kisiKayitGecis)
+
+
     }
 
     override fun onResume() {
